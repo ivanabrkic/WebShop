@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//WebContent/jsonDATA/kategorije.json=UTF-8
+encoding//WebContent/jsonDATA/korisnici.json=UTF-8
+encoding//WebContent/jsonDATA/oglasi.json=UTF-8
+encoding//src/services/KorisnikServis.java=UTF-8
+encoding//src/services/OglasServis.java=UTF-8

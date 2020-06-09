@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Megafon</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+    <link rel="stylesheet" href="templates/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="templates/css/bootstrap.min.css">
+    <link rel="stylesheet" href="templates/css/magnific-popup.css">
+    <link rel="stylesheet" href="templates/css/jquery-ui.css">
+    <link rel="stylesheet" href="templates/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="templates/css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="templates/css/aos.css">
+
+    <link rel="stylesheet" href="templates/css/style.css">
+	<link rel="stylesheet" href="templates/css/dugme.css">
+    
+  </head>
+  <body>
+  <div  class="site-wrap">
+    <header class="site-navbar" role="banner">
+      <div class="site-navbar-top">
+        <div class="container">
+          <div class="row align-items-center">
+
+            <div class="col-6 col-md-4 order-3 order-md-1 text-left">
+               <div class="site-top-icons">
+                <ul>
+                  <li>
+                    <a id="inbox" href="" class="site-cart">
+                      <span class="icon icon-inbox"></span>
+                      <span id="brojPoruka" class="count"></span>
+                    </a>
+                  </li>
+                  <li><a id="profil" data-toggle="modal" data-target="#modalKorisnik" href=""><span class="icon icon-person"></span></a></li>
+                  <li id="imeKorisnika"> </li> 
+                 </ul>
+                </div>
+            </div>
+
+            <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+              <div class="site-logo">
+                <a href="" class="js-logo-clone">Megafon</a>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+              <div class="site-top-icons">
+                <ul>
+                  <li><a id="listaRecenzija" href=""><span class="icon icon-star"></span></a></li>
+                  <li><a id="listaMojihOglasa" href=""><span class="icon icon-list"></span></a></li>
+                  <li><a id="pretragaKorisnika" href="" ><span class="icon icon-users"></span></a></li>
+                  <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>              
+                </ul>
+              </div> 
+            </div>
+            <div class="col-6 col-md-12 order-3 order-md-3 text-right">
+            	<div class="site-top-icons">
+            		<ul>
+            			<li>
+                      		<span class="icon icon-smile-o"></span>
+                      		<span id="brojLajkovaNaloga" class="count">0</span>
+                  		</li>
+                  		<li>
+                      		<span class="icon icon-frown-o"></span>
+                      		<span id="brojDislajkovaNaloga" class="count">0</span>
+                  		</li> 
+            		</ul>
+            	</div>
+            </div>
+
+          </div>
+        </div>
+      </div> 
+      <nav id="kategorije" class="site-navigation text-right text-md-center" role="navigation">
+        <div class="container">
+          <ul class="site-menu js-clone-nav d-none d-md-block">
+           <li class="#">
+              <a id="top10" href="prodavac.html">Top 10</a>
+            </li>
+            <li class="has-children">
+              <a>Kategorije</a>
+              <ul id="listaKategorija" class="dropdown">             
+              </ul>
+            </li>
+            <li id="odjava" class="#"><a id="loginMeni" href="">Odjavi se</a></li>
+          </ul>
+        </div>
+      </nav>
+       <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  		aria-hidden="true">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+    				<div class="modal-header text-center">
+        				<h4 class="modal-title w-100 font-weight-bold">Detalji</h4>
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          				<span aria-hidden="true">&times;</span>
+        			</button>
+      				</div>
+    				<div class="container">
+        				<div class="row">
+          					<div class="col-md-6">
+            					<img id="slikaOglasa" alt="Image" class="img-fluid">
+            					<p></p>
+            					<span><i id="brojListaOmiljenih" class="icon-favorite"></i>
+            					<i id="brojLajkova" class="icon-thumbs-up"></i>
+            					<i id="brojDislajkova" class="icon-thumbs-down"></i></span>
+            					<p><i id="datum" class="icon-date_range"></i></p>
+            					<p id="status"></p>
+          					</div>
+          					<div class="col-md-6">
+            					<h2 id="nazivOglasa" class="text-black"></h2>
+            					<p id="opisOglasa"></p>
+            					<p><strong id="cenaOglasa" class="text-primary h4"></strong> DIN </p>
+            					<p id="grad"></p>
+            					<p> <br> </p>
+            					<p>Prodavac : <strong id="korisnickoImeProdavca" class="text-primary h4"></strong> </p>		
+          					</div>
+        				</div>
+        				<div class="modal-header text-center">
+        					<h4 class="modal-title w-100 font-weight-bold">Recenzije</h4>
+        				</div>
+        				<div id="mestoZaRecenzije">
+
+        				</div>
+      				</div>
+    			</div>
+    		</div>
+    	</div>  
+    	<!-- ---DRUGI MODALNI DIJALOG ZA DODAVANJE OGLASA------------------------------------------------------------- -->
+    	
+    	<div class="modal fade" id="modalOglas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  		aria-hidden="true">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+    				<div class="modal-header text-center">
+        				<h4 class="modal-title w-100 font-weight-bold">Novi oglas</h4>
+        			<button id="zatvoriModalOglas" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          				<span aria-hidden="true">&times;</span>
+        			</button>
+      				</div>
+    				<div class="container">
+        				<div class="row">
+          					<div class="col-md-6">
+  								<p>
+										<label class="text-black">Naziv </label>
+										<input class="form-control" style="width:200px" type="text" id="nazivOglasaDodaj">
+								</p>
+								<p>
+										<label class="text-black">Cena </label>
+										<input class="form-control" style="width:200px" type="text" maxlength="10" id="cenaOglasaDodaj">
+								</p>
+            					<p>
+                    					<label class="text-black">Opis </label>
+                    					<textarea style="width:200px" id = "opisOglasaDodaj" cols="30" rows="7" class="form-control"></textarea>
+                  				</p>
+                  			</div>
+                  			<div class="col-md-6"> 
+  								<div style="top: 35px;" class="upload-btn-wrapper">
+  									<a style="color:white"  class="buy-now btn btn-sm btn-primary">Izaberite sliku...</a>
+  									<input accept="image/*" type="file" id="slikaOglasaBrowse" />
+  									<p id="slikaObavezna" style="color:red; display:none; visibility:hidden"> Slika je obavezna! </p>
+								</div>
+								<p> <br> </p>
+								<p> <img id="slikaOglasaDodata" class="img-fluid"> </p>
+								<p> <br> </p>
+                  				<p>
+                    					<label class="text-black">Datum isticanja </label>
+                    			</p>
+                    			<p>
+                    					<span><input style="width:50px" type="text" maxlength="2" id="dan"> / <input style="width:50px" type="text" maxlength="2" id="mesec"> / <input style="width:50px" type="text" maxlength="4" id="godina"></span>
+                  				</p>
+                  				<p> 
+                    					<label class="text-black">Ime kategorije </label>
+                    			</p>	
+                    			<div  class="dropdown sveKategorije">
+										  <button style="width:200px; font-size:12px"  type="button" class="btn btn-primary dropdown-toggle izabranaKategorija" data-toggle="dropdown">
+										    
+										  </button>
+										  <div class="dropdown-menu">
+										  	<ul style="list-style: none; padding-left: 0pt" class="listaKategorijaIzbor">
+  							
+  											</ul>
+										  </div>
+								</div>
+								<p> <br> </p>
+            					<p><a style="color:white" id="dodajOglas" href="" class="buy-now btn btn-sm btn-primary" >Objavi</a></p>
+          					</div>
+        				</div>
+      				</div>
+    			</div>
+    		</div>
+    	</div> 
+    	<!-- ---TRECI MODALNI DIJALOG ZA IZMENU OGLASA------------------------------------------------------------- -->
+    	
+    	<div class="modal fade" id="modalIzmeniOglas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  		aria-hidden="true">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+    				<div class="modal-header text-center">
+        				<h4 class="modal-title w-100 font-weight-bold">Izmeni oglas</h4>
+        			<button id="zatvoriModalIzmeniOglas" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          				<span aria-hidden="true">&times;</span>
+        			</button>
+      				</div>
+    				<div class="container">
+        				<div class="row">
+          					<div class="col-md-6">
+  								<p>
+										<label class="text-black">Naziv </label>
+										<input class="form-control" style="width:200px" type="text" id="nazivOglasaIzmeni">
+								</p>
+								<p>
+										<label class="text-black">Cena </label>
+										<input class="form-control" style="width:200px" type="text" maxlength="10" id="cenaOglasaIzmeni">
+								</p>
+            					<p>
+                    					<label class="text-black">Opis </label>
+                    					<textarea style="width:200px" id = "opisOglasaIzmeni" cols="30" rows="7" class="form-control"></textarea>
+                  				</p>
+                  			</div>
+                  			<div class="col-md-6"> 
+  								<div style="top: 35px;" class="upload-btn-wrapper">
+  									<a style="color:white"  class="buy-now btn btn-sm btn-primary">Izaberite sliku...</a>
+  									<input accept="image/*" type="file" id="slikaOglasaIzmeniBrowse" />
+  									<p id="slikaObaveznaIzmeni" style="color:red; display:none; visibility:hidden"> Slika je obavezna! </p>
+								</div>
+								<p> <br> </p>
+								<p> <img id="slikaOglasaIzmeni" class="img-fluid"> </p>
+								<p> <br> </p>
+                  				<p>
+                    					<label class="text-black">Datum isticanja </label>
+                    			</p>
+                    			<p>
+                    					<span><input style="width:50px" type="text" maxlength="2" id="danIzmeni"> / <input style="width:50px" type="text" maxlength="2" id="mesecIzmeni"> / <input style="width:50px" type="text" maxlength="4" id="godinaIzmeni"></span>
+                  				</p>
+                  				<p> 
+                    					<label class="text-black">Ime kategorije </label>
+                    			</p>	
+                    			<div class="dropdown sveKategorije">
+										  <button style="width:200px; font-size:12px"  type="button" class="btn btn-primary dropdown-toggle izabranaKategorija" data-toggle="dropdown">
+										    
+										  </button>
+										  <div class="dropdown-menu">
+										  	<ul style="list-style: none; padding-left: 0pt" class="listaKategorijaIzbor">
+  							
+  											</ul>
+										  </div>
+								</div>
+								<p> <br> </p>
+            					<p><a style="color:white" id="izmeniOglas" href="" class="buy-now btn btn-sm btn-primary" >Izmeni</a></p>
+          					</div>
+        				</div>
+      				</div>
+    			</div>
+    		</div>
+    	</div>    
+    	<!-- -------MODALNI DIJALOG ZA KORISNIKE -->
+    	<div class="modal fade" id="modalKorisnik" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  		aria-hidden="true">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+    				<div class="modal-header text-center">
+        				<h4 class="modal-title w-100 font-weight-bold">Detalji o korisniku</h4>
+        			<button id="zatvoriModalKorisnik" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          				<span aria-hidden="true">&times;</span>
+        			</button>
+      				</div>
+    				<div class="container">
+        				<div class="row">
+          					<div class="col-md-6">
+            					Korisničko ime : <h2 id="korisnickoIme" class="text-black"></h2>
+            					Uloga : <h2 id="uloga" class="text-black"></h2>
+          					</div>
+          					<div class="col-md-6">
+          						Ime i prezime : <p id="imePrezime"></p>
+            					Grad : <p id="gradKorisnik"></p>
+            					Email : <p id="emailAdresa"></p>
+            					Kontakt telefon : <p id="kontaktTelefon"></p>
+            					Datum registracije : <p id="datumRegistracije"></p>
+                				<p><a id="kreirajPoruku" href="#" data-toggle="modal" data-target="#modalPosaljiPoruku" class="buy-now btn btn-sm btn-primary" style="color:white">Kreiraj poruku</a></p>           					
+          					</div>
+        				</div>
+      				</div>
+    			</div>
+    		</div>
+    	</div>
+    	<!-- --- MODALNI DIJALOG ZA KREIRANJE PORUKE------------------------------------------------------------- -->
+    	
+    	<div class="modal fade" id="modalPosaljiPoruku" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  		aria-hidden="true">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+    				<div class="modal-header text-center">
+        				<h4 id="naslovModalnogPoruka" class="modal-title w-100 font-weight-bold">Poruka</h4>
+        			<button id="zatvoriModalPosaljiPoruku" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          				<span aria-hidden="true">&times;</span>
+        			</button>
+      				</div>
+    				<div class="container">
+        				<div class="row">
+          					<div class="col-md-6">
+  								<p>
+										<label class="text-black">Naslov </label>
+										<input class="form-control" style="width:200px" type="text" id="naslovPorukePosalji">
+								</p>
+            					<p>
+                    					<label class="text-black">Sadržaj </label>
+                    					<textarea style="width:200px" id = "sadrzajPorukePosalji" cols="30" rows="7" class="form-control"></textarea>
+                  				</p>
+                  				<p><a style="color:white" id="posaljiPoruku" href="" class="buy-now btn btn-sm btn-primary" >Pošalji</a></p>
+                  				<p><a style="color:white" id="odgovoriNaPoruku" href="" class="buy-now btn btn-sm btn-primary" >Odgovori</a></p>
+                  				<p><a style="color:white" id="izmeniPoruku" href="" class="buy-now btn btn-sm btn-primary" >Izmeni</a></p>		
+                  			</div>
+      					</div>
+    				</div>
+    			</div>
+    		</div> 
+    	</div>        
+    </header>
+</div>
+
+<!-- --------------------NAJPOPULARNIJI OGLASI------------------------------- -->
+<div id="najpopularnijiOglasiDiv" style="visibility:visible; display:block">
+	<div class="site-section block-3 site-blocks-2 bg-light">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-7 site-section-heading text-center pt-4">
+            <h2>Najpopularniji oglasi</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="nonloop-block-3 owl-carousel">
+              <div class="item">
+                <div class="block-4 text-center">
+                  <figure class="block-4-image">
+                    <img src="" alt="Image placeholder" class="img-fluid">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="#"></a></h3>
+                    <p class="mb-0"></p>
+                    <p class="text-primary font-weight-bold"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="block-4 text-center">
+                  <figure class="block-4-image">
+                    <img src="" alt="Image placeholder" class="img-fluid">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="#"></a></h3>
+                    <p class="mb-0"></p>
+                    <p class="text-primary font-weight-bold"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="block-4 text-center">
+                  <figure class="block-4-image">
+                    <img src="" alt="Image placeholder" class="img-fluid">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="#"></a></h3>
+                    <p class="mb-0"></p>
+                    <p class="text-primary font-weight-bold"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="block-4 text-center">
+                  <figure class="block-4-image">
+                    <img src="" alt="Image placeholder" class="img-fluid">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="#"></a></h3>
+                    <p class="mb-0"></p>
+                    <p class="text-primary font-weight-bold"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="block-4 text-center">
+                  <figure class="block-4-image">
+                    <img src="" alt="Image placeholder" class="img-fluid">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="#"></a></h3>
+                    <p class="mb-0"></p>
+                    <p class="text-primary font-weight-bold"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="block-4 text-center">
+                  <figure class="block-4-image">
+                    <img src="" alt="Image placeholder" class="img-fluid">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="#"></a></h3>
+                    <p class="mb-0"></p>
+                    <p class="text-primary font-weight-bold"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="block-4 text-center">
+                  <figure class="block-4-image">
+                    <img src="" alt="Image placeholder" class="img-fluid">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="#"></a></h3>
+                    <p class="mb-0"></p>
+                    <p class="text-primary font-weight-bold"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="block-4 text-center">
+                  <figure class="block-4-image">
+                    <img src="" alt="Image placeholder" class="img-fluid">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="#"></a></h3>
+                    <p class="mb-0"></p>
+                    <p class="text-primary font-weight-bold"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="block-4 text-center">
+                  <figure class="block-4-image">
+                    <img src="" alt="Image placeholder" class="img-fluid">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="#"></a></h3>
+                    <p class="mb-0"></p>
+                    <p class="text-primary font-weight-bold"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="block-4 text-center">
+                  <figure class="block-4-image">
+                    <img src="" alt="Image placeholder" class="img-fluid">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="#"> </a></h3>
+                    <p class="mb-0">  </p>
+                    <p class="text-primary font-weight-bold"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+	</div>   
+</div>  
+<!-- --------------------PRETRAGA------------------------------- -->
+<div id="pretragaDiv" style="visibility:hidden; display:none">
+    <div class="site-section">
+      <div class="container">
+
+        <div class="row mb-5">
+          <div class="col-md-9 order-2">
+          
+          	<div class="row">
+              <div class="col-md-12 mb-5">
+                <div class="float-md-left mb-4"><h2 id="imeKategorijeNaslov" class="text-black h5"></h2></div>
+              </div>
+            </div>
+          
+            <div id="mestoZaOglase" class="row mb-5">
+
+              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="block-4 text-center border">
+                  <figure class="block-4-image">
+                    <a href=""><img src="" alt="Image placeholder" class="img-fluid"></a>
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a></a></h3>
+                    <p class="mb-0"></p>
+                    <p class="text-primary font-weight-bold"></p>
+                  </div>
+                </div>
+              </div>
+              
+               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="block-4 text-center border">
+                  <figure class="block-4-image">
+                    <a href=""><img src="" alt="Image placeholder" class="img-fluid"></a>
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a></a></h3>
+                    <p class="mb-0"></p>
+                    <p class="text-primary font-weight-bold"></p>
+                  </div>
+                </div>
+              </div>
+              
+               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="block-4 text-center border">
+                  <figure class="block-4-image">
+                    <a href=""><img src="" alt="Image placeholder" class="img-fluid"></a>
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a></a></h3>
+                    <p class="mb-0"></p>
+                    <p class="text-primary font-weight-bold"></p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+           
+          </div>
+
+            <div id="pretraga" class="border p-4 rounded mb-4">
+            
+               <div class="mb-4">
+                <h3 class="mb-3 h6 text-uppercase text-black d-block">Naziv</h3>
+              	<input id="pretragaNaziv" type="text"/>
+               </div>
+            
+              <div class="mb-4">
+              	<h3 class="mb-3 h6 text-uppercase text-black d-block">Opseg cene</h3>
+                <div id="slider-range" class="border-primary"></div>
+                <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" />
+              </div>
+              
+             <div class="mb-4">
+              	<h3 class="mb-3 h6 text-uppercase text-black d-block">Opseg pozitivnih ocena</h3>
+                <div id="slider-range2" class="border-primary"></div>
+                <input type="text" name="text" id="amount2" class="form-control border-0 pl-0 bg-white" />
+              </div>
+              
+              <div class="mb-4">
+                <h3 class="mb-3 h6 text-uppercase text-black d-block">Datum</h3>
+				OD <input id="datumOdDan" maxlength="2" size="1px" type="text" value=""/> / <input id="datumOdMesec" maxlength="2" size="1px" type="text" value=""/> / <input id="datumOdGodina" maxlength="4" size="1px" type="text" value=""/>
+             </div>
+             
+             <div class="mb-4">
+				DO <input id="datumDoDan" maxlength="2" size="1px" type="text" value=""/> / <input id="datumDoMesec" maxlength="2" size="1px" type="text" value=""/> / <input id="datumDoGodina" maxlength="4" size="1px" type="text" value=""/>
+             </div>
+             
+              
+             <div class="mb-4">
+               <h3 class="mb-3 h6 text-uppercase text-black d-block">Grad</h3>
+               <div id="izabranoOdGradova" class="dropdown">
+  					<button id="izabraniGrad" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    				Svi gradovi
+  					</button>
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  						<ul style="list-style: none; padding-left: 0pt" id="listaGradova">
+  							
+  						</ul>
+  					</div>
+				</div>
+			 </div>
+			 
+			 <div class="mb-4">
+                <h3 class="mb-3 h6 text-uppercase text-black d-block">Status</h3>
+                <label for="s_sm" class="d-flex">
+                  <input type="checkbox" id="aktivan" class="mr-2 mt-1"> <span class="text-black">Aktivan</span>
+                </label>
+                <label for="s_md" class="d-flex">
+                  <input type="checkbox" id="uRealizaciji" class="mr-2 mt-1"> <span class="text-black">U realizaciji</span>
+                </label>
+                <label for="s_lg" class="d-flex">
+                  <input type="checkbox" id="dostavljen" class="mr-2 mt-1"> <span class="text-black">Dostavljen</span>
+                </label>
+              </div>
+              
+              <div class="mb-4">
+              	<p align="center"><a id="pretrazi" class="buy-now btn btn-sm btn-primary" style="color:white">PRETRAGA</a>&nbsp;<a id="ponistiParametre" class="buy-now btn btn-sm btn-primary" style="color:white">X</a></p>
+              </div>
+              
+            </div>
+          </div>
+        </div>      
+  	</div>
+ </div>  
+ <!-- --------------------LISTA RECENZIJA------------------------------- -->
+ <div id="listaRecenzijaDiv" style="visibility:hidden; display:none">
+	<div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <form class="col-md-12">
+          
+          	<div class="row">
+              <div class="col-md-12 mb-5">
+                <div class="float-md-left mb-4"><h2 class="text-black h5">Lista recenzija</h2></div>
+              </div>
+            </div>
+          
+            <div class="site-blocks-table">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="product-thumbnail">Slika</th>
+                    <th class="product-name">Naslov recenzije</th>
+                    <th class="product-price">Sadržaj recenzije</th>
+                    <th class="product-total">Opis iz oglasa tačan</th>
+                    <th class="product-total">Ispoštovan dogovor</th>
+                    <th class="product-total">Naziv oglasa</th>
+                    <th class="product-total">Korisničko ime recenzenta</th>
+                  </tr>
+                </thead>
+                <tbody id="dodajUTabeluListaRecenzija">
+                
+                 
+       
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+ 
+ <!-- --------------------LISTA NJEGOVIH OGLASA------------------------------- -->
+ <div id="listaMojihOglasaDiv" style="visibility:hidden; display:none">
+	<div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-9 order-2">
+          
+          	<div class="row">
+              <div class="col-md-12 mb-5">
+                <div class="float-md-left mb-4">
+                	<h2 class="text-black h5">Lista mojih oglasa</h2>
+              	</div>
+              	<div class="float-md-right mb-4">
+               		<a href="#" data-toggle="modal" data-target="#modalOglas" class="buy-now btn btn-sm btn-primary" style="color:white">DODAJ NOVI OGLAS</a>
+               	</div>
+              </div> 
+            </div>   
+          
+            <div class="site-blocks-table">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="product-thumbnail">Slika</th>
+                    <th class="product-name">Naziv</th>
+                    <th class="product-price">Cena</th>
+                    <th class="product-total">Opis</th>
+                    <th class="product-total">Status</th>
+                    <th class="product-total">Izmeni/Obriši</th>
+                  </tr>
+                </thead>
+                <tbody id="dodajUTabeluListaMojihOglasa">
+                
+                 
+       
+                </tbody>
+              </table>
+            </div>
+          </div>
+        <div class="border p-4 rounded mb-4">
+        	<div class="mb-4">
+                <h3 class="mb-3 h6 text-uppercase text-black d-block">Status</h3>
+                <label for="s_sm" class="d-flex">
+                  <input id="aktivanListaMojih" type="checkbox" class="mr-2 mt-1"> <span class="text-black">Aktivan</span>
+                </label>
+                <label for="s_md" class="d-flex">
+                  <input id="uRealizacijiListaMojih" type="checkbox" class="mr-2 mt-1"> <span class="text-black">U realizaciji</span>
+                </label>
+                <label for="s_lg" class="d-flex">
+                  <input id="dostavljenListaMojih" type="checkbox" class="mr-2 mt-1"> <span class="text-black">Dostavljen</span>
+                </label>
+              </div>
+              
+              <div class="mb-4">
+              	<p align="center"><a id="pretraziListaMojih" class="buy-now btn btn-sm btn-primary" style="color:white">PRETRAGA</a>&nbsp;<a id="ponistiListaMojih" class="buy-now btn btn-sm btn-primary" style="color:white">X</a></p>
+              </div>
+        </div>
+       </div>
+      </div>
+    </div>
+</div>
+ <!-- --------------------PRETRAGA KORISNIKA------------------------------- -->
+ <div id="pretragaKorisnikaDiv" style="visibility:hidden; display:none">
+	<div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-9 order-2">
+          
+          	<div class="row">
+              <div class="col-md-12 mb-5">
+                <div class="float-md-left mb-4">
+                	<h2 class="text-black h5">Lista svih korisnika</h2>
+              	</div>
+              </div> 
+            </div>   
+          
+            <div class="site-blocks-table">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="product-name">Korisničko ime</th>
+                    <th class="product-price">Grad</th>
+                    <th class="product-total">Tip korisnika</th>
+                  </tr>
+                </thead>
+                <tbody id="dodajUTabeluListaKorisnika">
+                
+                 
+       
+                </tbody>
+              </table>
+            </div>
+          </div>
+        <div class="border p-4 rounded mb-4">
+        	   <div class="mb-4">
+                <h3 class="mb-3 h6 text-uppercase text-black d-block">Naziv</h3>
+              	<input id="korisnickoImePretraga" type="text"/>
+               </div>
+               
+                <div class="mb-4">
+               <h3 class="mb-3 h6 text-uppercase text-black d-block">Grad</h3>
+               <div id="izabranoOdGradovaKorisnik" class="dropdown">
+  					<button id="izabraniGradKorisnik" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    				Svi gradovi
+  					</button>
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  						<ul style="list-style: none; padding-left: 0pt" id="listaGradovaKorisnik">
+  							
+  						</ul>
+  					</div>
+				</div>
+			 </div>
+              
+              <div class="mb-4">
+              	<p align="center"><a id="pretraziListuKorisnika" class="buy-now btn btn-sm btn-primary" style="color:white">PRETRAGA</a>&nbsp;<a id="ponistiListuKorisnika" class="buy-now btn btn-sm btn-primary" style="color:white">X</a></p>
+              </div>
+        </div>
+       </div>
+      </div>
+    </div>
+</div>
+
+<!-- --------------------INBOX------------------------------- -->
+
+<div id="porukeDiv" style="visibility:hidden; display:none">
+	<div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-9 order-2">
+          
+          	<div class="row">
+              <div class="col-md-12 mb-5">
+                <div class="float-md-left mb-4">
+                	<h2 class="text-black h5">Primljene/poslate poruke</h2>
+              	</div>
+              </div> 
+            </div>   
+          
+            <div class="site-blocks-table">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="product-name">Pošiljalac</th>
+                    <th class="product-price">Naslov</th>
+                    <th class="product-total">Sadržaj</th>
+                    <th class="product-name">Datum i vreme</th>
+                    <th class="product-price">Odgovori</th>
+                    <th class="product-price">Izmeni/Obriši</th>
+                  </tr>
+                </thead>
+                <tbody id="dodajUTabeluPoruke">
+                
+                 
+       
+                </tbody>
+              </table>
+            </div>
+          </div>
+       </div>
+      </div>
+    </div>
+</div>
+ 
+ 
+  <script src="templates/js/jquery-3.3.1.min.js"></script>
+  <script src="templates/js/jquery-ui.js"></script>
+  <script src="templates/js/popper.min.js"></script>
+  <script src="templates/js/bootstrap.min.js"></script>
+  
+  <script src="templates/js/owl.carousel.min.js"></script>
+  <script src="templates/js/jquery.magnific-popup.min.js"></script>
+  
+  <script src="templates/js/aos.js"></script>
+
+  <script src="templates/js/main.js"></script>
+  
+  <script src="homemadeJS/login&register.js"></script>
+  <script src="homemadeJS/prodavac.js"></script>
+  <script src="homemadeJS/pretraga.js"></script>
+
+      
+  </body>
+  
+</html>
